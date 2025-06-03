@@ -13,24 +13,30 @@
 
         :root {
             --primary-green: #002818;
+            --secondary-green: #004d2b;
             --light-green: #9BDFB8;
             --accent-green: #4CAF50;
             --primary-blue: #003366;
+            --secondary-blue: #1a5276;
             --light-blue: #a3c6e8;
             --primary-purple: #4a148c;
+            --secondary-purple: #6a1b9a;
             --light-purple: #b39ddb;
             --text-dark: #1a1a1a;
             --text-light: #666;
             --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
             --shadow: rgba(0, 40, 24, 0.1);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e8 100%);
+            background: var(--light-gray);
             min-height: 100vh;
             color: var(--text-dark);
             padding-bottom: 40px;
+            line-height: 1.6;
         }
 
         .presentation-container {
@@ -44,7 +50,7 @@
             border-radius: 20px;
             padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 20px 40px var(--shadow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             opacity: 0;
             transform: translateY(30px);
             animation: slideIn 0.8s ease-out forwards;
@@ -65,7 +71,7 @@
         }
 
         .slide-header {
-            background: linear-gradient(135deg, var(--primary-green), #004d2b);
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
             color: var(--white);
             padding: 30px;
             margin: -40px -40px 30px -40px;
@@ -73,15 +79,19 @@
             text-align: center;
         }
         
+        .slide-header.blue {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        }
+        
         .slide-header.purple {
-            background: linear-gradient(135deg, var(--primary-purple), #6a1b9a);
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
         }
 
         .slide-title {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .slide-subtitle {
@@ -98,26 +108,37 @@
         }
 
         .metric-card {
-            background: linear-gradient(135deg, var(--light-green), #b8e6ca);
+            background: var(--light-gray);
             padding: 25px;
             border-radius: 15px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
         
-        .metric-card.blue {
-            background: linear-gradient(135deg, var(--light-blue), #c2d8f0);
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-green);
         }
         
-        .metric-card.purple {
-            background: linear-gradient(135deg, var(--light-purple), #d1c4e9);
+        .metric-card.blue::before {
+            background: var(--primary-blue);
+        }
+        
+        .metric-card.purple::before {
+            background: var(--primary-purple);
         }
 
         .metric-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px var(--shadow);
-            border-color: var(--accent-green);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .metric-value {
@@ -142,11 +163,12 @@
         }
 
         .chart-container {
-            background: #f8fcf8;
+            background: var(--white);
             border-radius: 15px;
             padding: 25px;
             margin: 25px 0;
-            border-left: 5px solid var(--accent-green);
+            border-left: 5px solid var(--primary-green);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
         }
         
         .chart-container.blue {
@@ -194,19 +216,19 @@
         .bar-container {
             flex: 1;
             height: 35px;
-            background: #e8f5e8;
+            background: var(--light-gray);
             border-radius: 18px;
             overflow: hidden;
             position: relative;
         }
         
         .bar-container.purple-bg {
-            background: #ede7f6;
+            background: #f5f0fa;
         }
 
         .bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
+            background: linear-gradient(90deg, var(--light-green), var(--primary-green));
             border-radius: 18px;
             transition: width 1.5s ease-out;
             position: relative;
@@ -217,11 +239,11 @@
         }
         
         .blue-gradient {
-            background: linear-gradient(90deg, #4d94ff, var(--primary-blue));
+            background: linear-gradient(90deg, var(--light-blue), var(--primary-blue));
         }
         
         .purple-gradient {
-            background: linear-gradient(90deg, #7e57c2, var(--primary-purple));
+            background: linear-gradient(90deg, var(--light-purple), var(--primary-purple));
         }
 
         .bar-value {
@@ -241,10 +263,11 @@
         }
 
         .year-section {
-            background: #f8fcf8;
+            background: var(--white);
             border-radius: 15px;
             padding: 25px;
-            border: 2px solid var(--light-green);
+            border: 2px solid var(--medium-gray);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
         }
         
         .year-section.blue {
@@ -288,7 +311,7 @@
         .comparison-bar-container {
             flex: 1;
             height: 30px;
-            background: #e8f5e8;
+            background: var(--light-gray);
             border-radius: 15px;
             overflow: hidden;
             position: relative;
@@ -299,12 +322,12 @@
         }
         
         .comparison-bar-container.purple-bg {
-            background: #ede7f6;
+            background: #f5f0fa;
         }
 
         .comparison-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
+            background: linear-gradient(90deg, var(--light-green), var(--primary-green));
             border-radius: 15px;
             transition: width 1.5s ease-out;
             position: relative;
@@ -314,11 +337,11 @@
         }
         
         .blue-fill {
-            background: linear-gradient(90deg, #4d94ff, var(--primary-blue));
+            background: linear-gradient(90deg, var(--light-blue), var(--primary-blue));
         }
         
         .purple-fill {
-            background: linear-gradient(90deg, #7e57c2, var(--primary-purple));
+            background: linear-gradient(90deg, var(--light-purple), var(--primary-purple));
         }
 
         .comparison-bar-value {
@@ -331,20 +354,19 @@
         }
 
         .evolution-section {
-            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            background: var(--light-gray);
             border-radius: 15px;
             padding: 30px;
             margin: 25px 0;
             border-left: 5px solid var(--primary-green);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
         }
         
         .evolution-section.blue {
-            background: linear-gradient(135deg, #e3edf8, #eef5fd);
             border-left: 5px solid var(--primary-blue);
         }
         
         .evolution-section.purple {
-            background: linear-gradient(135deg, #ede7f6, #f3e5f5);
             border-left: 5px solid var(--primary-purple);
         }
 
@@ -370,6 +392,7 @@
             margin: 20px 0;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .insight-box.blue {
@@ -391,11 +414,11 @@
         }
         
         .insight-box.blue::before {
-            background: linear-gradient(90deg, #4d94ff, #0066cc);
+            background: linear-gradient(90deg, var(--light-blue), var(--primary-blue));
         }
         
         .insight-box.purple::before {
-            background: linear-gradient(90deg, #b39ddb, #7e57c2);
+            background: linear-gradient(90deg, var(--light-purple), var(--primary-purple));
         }
 
         .insight-title {
@@ -420,11 +443,11 @@
         }
         
         .blue-progress {
-            background: #4d94ff;
+            background: var(--light-blue);
         }
         
         .purple-progress {
-            background: #b39ddb;
+            background: var(--light-purple);
         }
 
         .sla-indicator {
@@ -462,7 +485,7 @@
         .sdr-table td {
             padding: 15px;
             text-align: center;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--medium-gray);
         }
         
         .sdr-table tr:last-child td {
@@ -526,7 +549,7 @@
         }
         
         .grid-line {
-            border-top: 1px dashed #e0e0e0;
+            border-top: 1px dashed var(--medium-gray);
             position: relative;
         }
         
@@ -553,7 +576,7 @@
             border-radius: 50%;
             background: var(--primary-purple);
             border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transform: translate(-50%, 50%);
             z-index: 10;
         }
@@ -624,6 +647,28 @@
                 height: 250px;
             }
         }
+        
+        /* Novo estilo para a paleta harmonizada */
+        .color-palette {
+            display: flex;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .color-sample {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin: 0 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .color-sample.green { background: var(--primary-green); }
+        .color-sample.light-green { background: var(--light-green); }
+        .color-sample.blue { background: var(--primary-blue); }
+        .color-sample.light-blue { background: var(--light-blue); }
+        .color-sample.purple { background: var(--primary-purple); }
+        .color-sample.light-purple { background: var(--light-purple); }
     </style>
 </head>
 <body>
@@ -806,7 +851,7 @@
             </div>
         </div>
 
-        <!-- Novo Slide: Resolução no Mesmo Dia -->
+        <!-- Slide 4: Resolução no Mesmo Dia -->
         <div class="slide">
             <div class="slide-header purple">
                 <h2 class="slide-title">Resolução no Mesmo Dia</h2>
@@ -903,7 +948,7 @@
             </div>
         </div>
 
-        <!-- Slide 4: Resultados das SDRs -->
+        <!-- Slide 5: Resultados das SDRs -->
         <div class="slide">
             <div class="slide-header blue">
                 <h2 class="slide-title">Desempenho das SDRs</h2>
@@ -1009,7 +1054,7 @@
             </div>
         </div>
 
-        <!-- Slide 5: Comparativo de Assuntos -->
+        <!-- Slide 6: Comparativo de Assuntos -->
         <div class="slide">
             <div class="slide-header">
                 <h2 class="slide-title">Top Assuntos - Evolução</h2>
@@ -1117,7 +1162,7 @@
             </div>
         </div>
 
-        <!-- Slide 6: Conclusões e Próximos Passos -->
+        <!-- Slide 7: Conclusões e Próximos Passos -->
         <div class="slide">
             <div class="slide-header">
                 <h2 class="slide-title">Conclusões & Estratégias</h2>
@@ -1195,7 +1240,7 @@
                 </div>
             </div>
 
-            <div class="insight-box" style="background: linear-gradient(135deg, var(--primary-green), #004d2b);">
+            <div class="insight-box" style="background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));">
                 <h3 class="insight-title">🚀 Meta 2025</h3>
                 <p><strong>Sustentar o crescimento mantendo excelência operacional:</strong></p>
                 <p>• SLA consistente abaixo de 2 dias</p>
@@ -1237,10 +1282,12 @@
         document.querySelectorAll('.metric-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.1)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.03)';
             });
         });
     </script>
